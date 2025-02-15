@@ -35,7 +35,7 @@ const bearerAuthentication = (request, env) => {
 };
 
 // CORS, see https://itty.dev/itty-router/cors
-router.all('*', preflight);
+router.all('*', preflight).get('/images/get/:name', getImageHandler);
 
 router
 	.all('*', bearerAuthentication)
@@ -45,7 +45,6 @@ router
 	.post('/audio/transcriptions', transcriptionHandler)
 	.post('/audio/translations', translationHandler)
 	.post('/images/generations', imageGenerationHandler)
-	.get('/images/get/:name', getImageHandler)
 	.get('/models', modelsHandler);
 
 // 404 for everything else
